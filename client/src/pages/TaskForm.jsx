@@ -27,9 +27,7 @@ export const TaskForm = () => {
   }, []);
 
   return (
-    <div>
-      <h1>{params.id ? "Edit Task" : "Create Task"}</h1>
-
+    <div className="">
       <Formik
         initialValues={task}
         enableReinitialize={true}
@@ -47,16 +45,22 @@ export const TaskForm = () => {
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>Title</label>
+          <Form
+            onSubmit={handleSubmit}
+            className="bg-slate-300 max-w-sm rounded-md p-4 mx-auto mt-10"
+          >
+            <h1 className="text-xl font-bold uppercase text-center">{params.id ? "Edit Task" : "Create Task"}</h1>
+
+            <label className="block">Title</label>
             <input
               type="text"
               name="title"
               placeholder="Write a title"
               onChange={handleChange}
               value={values.title}
+              className="px-2 py-1 rounded-sm w-full"
             />
-            <label>Description</label>
+            <label className="block">Description</label>
             <textarea
               type="text"
               name="description"
@@ -64,8 +68,9 @@ export const TaskForm = () => {
               placeholder="Write a description"
               onChange={handleChange}
               value={values.description}
+              className="px-2 py-1 rounded-sm w-full"
             />
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="block bg-indigo-500 px-2 py-1 text-white w-full rounded-md">
               {isSubmitting ? "Saving..." : "Save"}
             </button>
           </Form>
